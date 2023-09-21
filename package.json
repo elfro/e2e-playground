@@ -8,7 +8,14 @@
     "test-pw-ui": "playwright test --ui",
     "format": "prettier --single-quote --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "format-check": "prettier --check --single-quote --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npm run format-check",
+      "npm run lint"
+    ]
   },
   "keywords": [],
   "author": "Ellina Frolova",
@@ -20,6 +27,8 @@
     "dotenv": "16.3.1",
     "eslint": "8.49.0",
     "eslint-config-prettier": "9.0.0",
+    "husky": "8.0.3",
+    "lint-staged": "14.0.1",
     "prettier": "3.0.3",
     "typescript": "5.2.2"
   }
