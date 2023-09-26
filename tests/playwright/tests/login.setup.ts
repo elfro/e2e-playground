@@ -1,4 +1,4 @@
-import { expect, test as setup } from '@playwright/test';
+import { expect, test as setup } from '../fixtures/setup.fixture';
 import { STORAGE_STATE } from '../../../playwright.config';
 import { LoginPo } from '../page-objects/login.po';
 import { DashboardPo } from '../page-objects/admin/dashboard.po';
@@ -12,9 +12,7 @@ setup('should login as an admin', async ({ page }) => {
   await loginPage.goto();
   await loginPage.login(username, password);
 
-  await expect(
-    dashboardPage.headerComponent.getUserDropDownMenu(),
-  ).toBeVisible();
+  await expect(dashboardPage.headerComponent.getUserDropDownMenu()).toBeVisible();
 
-  await page.context().storageState({ path: STORAGE_STATE as string });
+  await page.context().storageState({ path: STORAGE_STATE });
 });

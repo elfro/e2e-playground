@@ -12,4 +12,7 @@ module.exports = {
         tsconfigRootDir: __dirname,
     },
     root: true,
+    rules: {
+        'max-len': ['error', {code: 125}],
+    }
 };

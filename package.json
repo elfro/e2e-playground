@@ -21,7 +21,9 @@
   "author": "Ellina Frolova",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "1.37.1",
+    "@faker-js/faker": "8.1.0",
+    "@playwright/test": "1.38.1",
+    "@types/node": "20.7.0",
     "@typescript-eslint/eslint-plugin": "6.7.0",
     "@typescript-eslint/parser": "6.7.0",
     "dotenv": "16.3.1",

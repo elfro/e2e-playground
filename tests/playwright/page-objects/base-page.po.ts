@@ -1,7 +1,7 @@
 import { Page } from '@playwright/test';
 
 export abstract class BasePagePo {
-  private readonly _url: string;
+  protected readonly _url: string;
   protected readonly page: Page;
 
   protected constructor(page: Page, url: string = '/') {
@@ -9,8 +9,9 @@ export abstract class BasePagePo {
     this._url = url;
   }
 
-  async goto() {
-    await this.page.goto(this._url);
+  async goto(subPath?: string) {
+    const pageURL = subPath ? `${this._url}/${subPath}` : this._url;
+    await this.page.goto(pageURL, { waitUntil: 'load' });
   }
 
   get url(): string {
