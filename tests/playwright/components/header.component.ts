@@ -1,6 +1,5 @@
 import { Locator, Page } from '@playwright/test';
 import { BaseComponent } from './base.component';
-
 export class HeaderComponent extends BaseComponent {
   private readonly userDropDownMenuEl: Locator;
 

@@ -1,10 +1,13 @@
 import { Page } from '@playwright/test';
 import { DataTableComponent } from './data-table.component';
-import { CandidateFilterResultsData } from '../../types/CandidateFilterResultsData';
 
-export class CandidatesTableComponent extends DataTableComponent<CandidateFilterResultsData> {
+export class CandidatesTableComponent extends DataTableComponent {
   constructor(page: Page) {
     super(page);
+  }
+
+  async collectTableData<CandidateFilterResultsData>() {
+    return this.collectData<CandidateFilterResultsData>();
   }
 
   protected dataParser<CandidateFilterResultsData>(data: string[]) {

@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines" : {
+    "node" : ">=18.17.0"
+  },
   "scripts": {
     "test-pw": "node_modules/.bin/playwright test",
     "test-pw-ui": "playwright test --ui",
-    "format": "prettier --single-quote --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "format-check": "prettier --check --single-quote --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "lint": "eslint .",
     "prepare": "husky install"
@@ -21,7 +23,9 @@
   "author": "Ellina Frolova",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "1.37.1",
+    "@faker-js/faker": "8.1.0",
+    "@playwright/test": "1.38.1",
+    "@types/node": "20.7.0",
     "@typescript-eslint/eslint-plugin": "6.7.0",
     "@typescript-eslint/parser": "6.7.0",
     "dotenv": "16.3.1",

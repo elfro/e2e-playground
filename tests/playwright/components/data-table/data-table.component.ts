@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BaseComponent } from '../base.component';
 
-export abstract class DataTableComponent<T> extends BaseComponent {
+export abstract class DataTableComponent extends BaseComponent {
   private readonly preloaderEl: Locator;
   private readonly tableRowEl: Locator;
   private readonly tableCellSelector: string;
@@ -12,8 +12,8 @@ export abstract class DataTableComponent<T> extends BaseComponent {
 
   protected constructor(page: Page) {
     super(page);
-    this.preloaderEl = page.locator('.oxd-loading-spinner');
-    this.tableRowEl = page.locator('.oxd-table-card');
+    this.preloaderEl = this.page.locator('.oxd-loading-spinner');
+    this.tableRowEl = this.page.locator('.oxd-table-card');
     this.tableCellSelector = '.oxd-table-cell div:not([class])';
     this.buttonViewSelector = '.bi-eye-fill';
     this.buttonDeleteSelector = '.bi-trash';
@@ -21,9 +21,11 @@ export abstract class DataTableComponent<T> extends BaseComponent {
     this.buttonEditSelector = '.bi-pencil-fill';
   }
 
+  abstract collectTableData<T>(): Promise<T[]>;
+
   protected abstract dataParser<T>(data: string[]): T;
 
-  async collectData() {
+  protected async collectData<T>() {
     const results: T[] = [];
     for (const row of await this.tableRowEl.all()) {
       const values = await row.locator(this.tableCellSelector).allInnerTexts();

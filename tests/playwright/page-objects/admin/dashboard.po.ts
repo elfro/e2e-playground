@@ -1,12 +1,11 @@
-import { HeaderComponent } from '../../components/header.component';
 import { Page } from '@playwright/test';
-
-export class DashboardPo {
+import { BasePagePo } from '../base-page.po';
+import { HeaderComponent } from '../../components/header.component';
+export class DashboardPo extends BasePagePo {
   private readonly _headerComponent: HeaderComponent;
-  private readonly page: Page;
 
   constructor(page: Page) {
-    this.page = page;
+    super(page);
     this._headerComponent = new HeaderComponent(page);
   }
 

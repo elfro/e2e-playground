@@ -1,6 +1,5 @@
 import { Locator, Page } from '@playwright/test';
 import { BasePagePo } from './base-page.po';
-
 export class LoginPo extends BasePagePo {
   private readonly inputUsernameEl: Locator;
   private readonly inputPasswordEl: Locator;
