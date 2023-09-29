@@ -1,16 +1,16 @@
-import path from 'path';
-import { faker } from '@faker-js/faker';
 import { expect, test } from '../fixtures/setup.fixture';
 import { CandidatesPo } from '../page-objects/admin/recruitment/candidates.po';
 import { VacanciesPo } from '../page-objects/admin/recruitment/vacancies.po';
 import { ApplyVacancyPo } from '../page-objects/apply-vacancy.po';
-import { CandidatesFilterOptions } from '../types/ui/CandidatesFilterOptions';
-import { VacanciesFilterOptions } from '../types/ui/VacanciesFilterOptions';
-import { JobTitleAPI } from '../types/api/JobTitleAPI';
+import { CandidateFactory } from '../test-data-helpers/candidate-factory';
+import { VacancyFactory } from '../test-data-helpers/vacancy-factory';
 import { UserAPI } from '../types/api/UserAPI';
 import { VacancyAPI } from '../types/api/VacancyAPI';
-import { ResumeData } from '../types/ui/ResumeData';
 import { ModulesAPI } from '../types/api/ModulesAPI';
+import { ResumeData } from '../types/ui/ResumeData';
+import { JobTitleAPI } from '../types/api/JobTitleAPI';
+import { CandidatesFilterOptions } from '../types/ui/CandidatesFilterOptions';
+import { VacanciesFilterOptions } from '../types/ui/VacanciesFilterOptions';
 import { CandidateFilterResultsData } from '../types/ui/CandidateFilterResultsData';
 import { VacanciesFilterResultsData } from '../types/ui/VacanciesFilterResultsData';
 
@@ -28,14 +28,14 @@ test.describe('Recruitment module', () => {
   });
 
   test.beforeAll(async ({ httpClient }) => {
-    newCandidate = generateCandidateData();
+    newCandidate = CandidateFactory.generateCandidateUIData();
     const jobTitles = await httpClient.getJobTitles();
     const activeUsers = (await httpClient.getUsers()).filter(({ deleted }) => !deleted);
 
     const randomJobTitle = getRandomArrayElement(jobTitles) as JobTitleAPI;
     const randomUser = getRandomArrayElement(activeUsers) as UserAPI;
 
-    newVacancy = await httpClient.createVacancy(generateVacancyData(randomJobTitle, randomUser));
+    newVacancy = await httpClient.createVacancy(VacancyFactory.generateVacancyAPIData(randomJobTitle, randomUser));
   });
 
   test.afterAll(async ({ httpClient }) => {
@@ -92,34 +92,8 @@ test.describe('Recruitment module', () => {
   });
 });
 
-function generateCandidateData() {
-  const filePath = path.join(__dirname, '../../../upload/To-do.pdf');
-  const candidate: ResumeData = {
-    firstName: faker.person.firstName(),
-    middleName: faker.person.middleName(),
-    lastName: faker.person.lastName(),
-    email: `test${Date.now()}@test.com`,
-    contactNumber: faker.string.numeric(10),
-    file: filePath,
-  };
-
-  return candidate;
-}
-
 function getFullname({ firstName, middleName, lastName }: ResumeData) {
   return `${firstName} ${middleName} ${lastName}`.replace(/\s\s+/g, ' ');
-}
-
-function generateVacancyData(jobTitle: JobTitleAPI, hiringManager: UserAPI) {
-  return {
-    name: `Middle ${jobTitle.title} ${Date.now()}`,
-    jobTitleId: jobTitle.id,
-    employeeId: hiringManager.employee.empNumber,
-    numOfPositions: 1,
-    description: `We're looking for ${jobTitle.title}`,
-    status: true,
-    isPublished: true,
-  };
 }
 
 function getRandomArrayElement(array: unknown[]) {

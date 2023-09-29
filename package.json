@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines" : {
+    "node" : ">=18.17.0"
+  },
   "scripts": {
     "test-pw": "node_modules/.bin/playwright test",
     "test-pw-ui": "playwright test --ui",
-    "format": "prettier --single-quote --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "format-check": "prettier --check --single-quote --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "lint": "eslint .",
     "prepare": "husky install"
