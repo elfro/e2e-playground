@@ -4,20 +4,20 @@ import { expect, test } from '../fixtures/setup.fixture';
 import { CandidatesPo } from '../page-objects/admin/recruitment/candidates.po';
 import { VacanciesPo } from '../page-objects/admin/recruitment/vacancies.po';
 import { ApplyVacancyPo } from '../page-objects/apply-vacancy.po';
-import { CandidatesFilterOptions } from '../types/CandidatesFilterOptions';
-import { VacanciesFilterOptions } from '../types/VacanciesFilterOptions';
-import { JobTitleAPI } from '../types/JobTitleAPI';
-import { UserAPI } from '../types/UserAPI';
-import { VacancyAPI } from '../types/VacancyAPI';
-import { ResumeData } from '../types/ResumeData';
-import { ModulesAPI } from '../types/ModulesAPI';
-import { CandidateFilterResultsData } from '../types/CandidateFilterResultsData';
-import { VacanciesFilterResultsData } from '../types/VacanciesFilterResultsData';
+import { CandidatesFilterOptions } from '../types/ui/CandidatesFilterOptions';
+import { VacanciesFilterOptions } from '../types/ui/VacanciesFilterOptions';
+import { JobTitleAPI } from '../types/api/JobTitleAPI';
+import { UserAPI } from '../types/api/UserAPI';
+import { VacancyAPI } from '../types/api/VacancyAPI';
+import { ResumeData } from '../types/ui/ResumeData';
+import { ModulesAPI } from '../types/api/ModulesAPI';
+import { CandidateFilterResultsData } from '../types/ui/CandidateFilterResultsData';
+import { VacanciesFilterResultsData } from '../types/ui/VacanciesFilterResultsData';
 
 test.describe('Recruitment module', () => {
+  let initialModulesState: ModulesAPI;
   let newVacancy: VacancyAPI;
   let newCandidate: ResumeData;
-  let initialModulesState: ModulesAPI;
 
   test.beforeAll(async ({ httpClient }) => {
     initialModulesState = await httpClient.getModules();
@@ -29,18 +29,13 @@ test.describe('Recruitment module', () => {
 
   test.beforeAll(async ({ httpClient }) => {
     newCandidate = generateCandidateData();
-    console.log(newCandidate);
-
     const jobTitles = await httpClient.getJobTitles();
-    const users = await httpClient.getUsers();
+    const activeUsers = (await httpClient.getUsers()).filter(({ deleted }) => !deleted);
 
     const randomJobTitle = getRandomArrayElement(jobTitles) as JobTitleAPI;
-
-    const activeUsers = users.filter(({ deleted }) => !deleted);
     const randomUser = getRandomArrayElement(activeUsers) as UserAPI;
 
     newVacancy = await httpClient.createVacancy(generateVacancyData(randomJobTitle, randomUser));
-    console.log(newVacancy);
   });
 
   test.afterAll(async ({ httpClient }) => {
@@ -54,59 +49,46 @@ test.describe('Recruitment module', () => {
         candidate.lastName === newCandidate.lastName,
     );
 
-    await httpClient.deleteCandidate([candidateToDelete.id]);
+    if (candidateToDelete) {
+      await httpClient.deleteCandidate([candidateToDelete.id]);
+    }
     await httpClient.deleteVacancy([newVacancy.id]);
     await httpClient.updateModules(initialModulesState);
   });
 
-  test('should filter Candidates', async ({ page }) => {
+  test('should apply vacancy and check that record appears on the Candidates page', async ({ page }) => {
     const applyVacancyPage = new ApplyVacancyPo(page);
-    await applyVacancyPage.goto(newVacancy.id.toString());
-    await applyVacancyPage.applyVacancyComponent.fillInForm(newCandidate);
-    await applyVacancyPage.modalComponent.clickOnOkButton();
-
     const candidatesPage = new CandidatesPo(page);
-
-    await candidatesPage.goto();
-    await expect(candidatesPage.getCandidatesContainer()).toBeVisible();
     const filterOptions: CandidatesFilterOptions = {
       vacancy: newVacancy.name,
     };
-    await candidatesPage.tableFilterComponent.selectFilters(filterOptions);
-    await candidatesPage.dataTableComponent.waitForPreloaderDisappear();
 
-    // ToDo: FIX
-    await page.waitForTimeout(1000);
+    await applyVacancyPage.goto(newVacancy.id.toString());
+    await applyVacancyPage.applyVacancyComponent.fillInForm(newCandidate);
+    await applyVacancyPage.modalComponent.clickOnOkButton();
+    await candidatesPage.goto();
+    await candidatesPage.selectFilters(filterOptions);
     const candidates: CandidateFilterResultsData[] = await candidatesPage.dataTableComponent.collectTableData();
+    const notMatched = candidates.filter(
+      c => !c.vacancy.includes(filterOptions.vacancy) || !c.candidate.includes(getFullname(newCandidate)),
+    );
 
-    expect(
-      candidates.every(
-        candidate =>
-          candidate.vacancy.includes(filterOptions.vacancy) && candidate.candidate.includes(getFullname(newCandidate)),
-      ),
-    ).toBeTruthy();
-
-    console.log(candidates);
+    expect(notMatched, getErrorMessageFilterTest(filterOptions, notMatched)).toHaveLength(0);
   });
 
-  test('should filter Vacancies', async ({ page }) => {
+  test('should filter Vacancies and check results are correct', async ({ page }) => {
     const vacanciesPage = new VacanciesPo(page);
-
-    const filterVacanciesOptions: VacanciesFilterOptions = {
+    const filterOptions: VacanciesFilterOptions = {
       status: 'Active',
       vacancy: newVacancy.name,
     };
+
     await vacanciesPage.goto();
-    await page.waitForResponse('/web/index.php/api/v2/recruitment/hiring-managers?limit=0');
-    await vacanciesPage.dataTableComponent.waitForPreloaderDisappear();
-
-    await vacanciesPage.tableFilterComponent.selectFilters(filterVacanciesOptions);
-
-    await vacanciesPage.dataTableComponent.waitForPreloaderDisappear();
+    await vacanciesPage.selectFilters(filterOptions);
     const vacancies: VacanciesFilterResultsData[] = await vacanciesPage.dataTableComponent.collectTableData();
+    const notMatched = vacancies.filter(v => v.vacancy !== filterOptions.vacancy);
 
-    console.log(vacancies);
-    expect(vacancies.every(v => v.vacancy === filterVacanciesOptions.vacancy)).toBeTruthy();
+    expect(notMatched, getErrorMessageFilterTest(filterOptions, notMatched)).toHaveLength(0);
   });
 });
 
@@ -142,4 +124,10 @@ function generateVacancyData(jobTitle: JobTitleAPI, hiringManager: UserAPI) {
 
 function getRandomArrayElement(array: unknown[]) {
   return array[Math.floor(Math.random() * array.length)];
+}
+
+function getErrorMessageFilterTest(filterOptions: unknown, notMatched: unknown) {
+  return `The following filtered results don't contain the queried values:
+      Filter options:\n${JSON.stringify(filterOptions, null, '\t')},
+      Filtered results:\n${JSON.stringify(notMatched, null, '\t')}`;
 }

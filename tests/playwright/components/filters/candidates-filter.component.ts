@@ -1,5 +1,5 @@
 import { TableFilterComponent } from './table-filter.component';
-import { CandidatesFilterOptions } from '../../types/CandidatesFilterOptions';
+import { CandidatesFilterOptions } from '../../types/ui/CandidatesFilterOptions';
 import { RecruitmentFilters } from '../../constants/candidates-filters.const';
 
 export class CandidatesFilterComponent extends TableFilterComponent {

@@ -1,9 +1,12 @@
 import { APIRequestContext } from '@playwright/test';
-import { ModulesAPI } from '../types/ModulesAPI';
-import { LocalizationAPI } from '../types/LocalizationAPI';
-import { CandidateResponseAPI } from '../types/CandidateAPI';
-import { VacancyAPI, VacancyCreateRequestData } from '../types/VacancyAPI';
+import { ModulesAPI } from '../types/api/ModulesAPI';
+import { LocalizationAPI } from '../types/api/LocalizationAPI';
+import { CandidateResponseAPI } from '../types/api/CandidateAPI';
+import { VacancyAPI, VacancyCreateRequestData } from '../types/api/VacancyAPI';
 import { ApiError } from './api-error';
+import { JobTitleAPI } from '../types/api/JobTitleAPI';
+import { UserAPI } from '../types/api/UserAPI';
+import { appURLs } from '../constants/app-urls.const';
 
 type options = {
   params?: { [key: string]: string | number | boolean };
@@ -17,27 +20,27 @@ export class HTTPClient {
   }
 
   async getModules() {
-    return await this.getEntry<ModulesAPI>('/web/index.php/api/v2/admin/modules');
+    return await this.getEntry<ModulesAPI>(appURLs.api.modules);
   }
 
   async updateModules(modules: ModulesAPI) {
-    await this.updateEntry('/web/index.php/api/v2/admin/modules', modules);
+    return await this.updateEntry(appURLs.api.modules, modules);
   }
 
   async getLocalization() {
-    return await this.getEntry<LocalizationAPI>('/web/index.php/api/v2/admin/localization');
+    return await this.getEntry<LocalizationAPI>(appURLs.api.localization);
   }
 
   async updateLocalization(data: LocalizationAPI) {
-    await this.updateEntry('/web/index.php/api/v2/admin/localization', data);
+    return await this.updateEntry(appURLs.api.localization, data);
   }
 
   async getJobTitles() {
-    return await this.getEntries('/web/index.php/api/v2/admin/job-titles');
+    return await this.getEntries<JobTitleAPI>(appURLs.api.jobTitles);
   }
 
   async getUsers() {
-    return await this.getEntries('/web/index.php/api/v2/admin/users', {
+    return await this.getEntries<UserAPI>(appURLs.api.users, {
       params: {
         limit: 50,
         offset: 0,
@@ -48,19 +51,19 @@ export class HTTPClient {
   }
 
   async createVacancy(body: VacancyCreateRequestData) {
-    return await this.createEntry<VacancyCreateRequestData, VacancyAPI>('/web/index.php/api/v2/recruitment/vacancies', body);
+    return await this.createEntry<VacancyCreateRequestData, VacancyAPI>(appURLs.api.vacancies, body);
   }
 
   async deleteVacancy(ids: number[]) {
-    return await this.deleteEntries('/web/index.php/api/v2/recruitment/vacancies', ids);
+    return await this.deleteEntries(appURLs.api.vacancies, ids);
   }
 
   async deleteCandidate(ids: number[]) {
-    return await this.deleteEntries('/web/index.php/api/v2/recruitment/candidates', ids);
+    return await this.deleteEntries(appURLs.api.candidates, ids);
   }
 
   async getCandidatesList() {
-    return await this.getEntries<CandidateResponseAPI>('/web/index.php/api/v2/recruitment/candidates', {
+    return await this.getEntries<CandidateResponseAPI>(appURLs.api.candidates, {
       params: {
         limit: 50,
         offset: 0,
@@ -125,6 +128,10 @@ export class HTTPClient {
   }
 
   private async deleteEntries(url: string, ids: number[]) {
+    if (ids.length === 0) {
+      console.log('The provided ids array is empty.');
+      return;
+    }
     try {
       const response = await this.request.delete(url, { data: { ids } });
 

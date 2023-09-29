@@ -1,4 +1,4 @@
-import { LocalizationAPI } from '../types/LocalizationAPI';
+import { LocalizationAPI } from '../types/api/LocalizationAPI';
 
 export const locale: LocalizationAPI = {
   language: 'en_US',

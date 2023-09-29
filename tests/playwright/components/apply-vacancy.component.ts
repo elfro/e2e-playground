@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 import { BaseComponent } from './base.component';
-import { ResumeData } from '../types/ResumeData';
+import { ResumeData } from '../types/ui/ResumeData';
 import { WebElementHelper } from '../WebElementHelper';
 
 export class ApplyVacancyComponent extends BaseComponent {

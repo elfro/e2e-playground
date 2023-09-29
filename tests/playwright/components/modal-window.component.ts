@@ -13,6 +13,14 @@ export class ModalWindowComponent extends BaseComponent {
     this.buttonEl = this.page.locator('.orangehrm-modal-footer .oxd-button');
   }
 
+  getTitle() {
+    return this.titleEl;
+  }
+
+  getDescription() {
+    return this.descriptionEl;
+  }
+
   async clickOnOkButton() {
     await this.buttonEl.click();
   }
