@@ -1,7 +1,7 @@
 # e2e-playground
 This project is a playground to practice e2e tests.
 
-The [OrangeHRM](https://opensource-demo.orangehrmlive.com/) project has been used.
+The [OrangeHRM](https://opensource-demo.orangehrmlive.com/) demo project was chosen since it provides guest user pages, admin panel and allows to use API request to setup necessary test environment.
 
 ## Setup Pre-Requisites
 
@@ -14,7 +14,7 @@ npm 9.6.0 +
 ```
 git@github.com:elfro/e2e-playground.git
 ```
-2. Switch to project directory:
+2. Switch to the project directory:
 ```
 cd e2e-playground
 ```
@@ -26,9 +26,11 @@ npm ci
 ```
 npx playwright install
 ```
-5. Copy .env.example file to the root of the project with .env name.
+5. Copy .env.example file to the root of the project with .env file name.
 6. Set `USERNAME` and `PASSWORD` values by copying them from the main auth page of [OrangeHRM](https://opensource-demo.orangehrmlive.com/) app.
-![Auth credentials](docs/assets/env_auth_creds_variable.png)
+
+<img src="docs/assets/env_auth_creds_variable.png" alt="Auth credentials" style="width: 75% !important;">
+
 7. Run tests:
 ```
 npm run test-pw
@@ -53,19 +55,31 @@ ___
 
 **Spec** file contains the test itself.
 
+**Fixture**, **Setup** files contain the project dependencies that are used to prepare environment for each test.
+
 **Component** class usually contains all element selectors and methods to interact with those elements inside this component.
 
 **Page** class consists of Components and may contain a method for page action that requires the work with several components.
 
-**Client** provides the API with the specific external library / service that can be used in the tests.
+**Client** provides the API with the specific library / service that can be used in the tests.
 
 **Helper** does general tasks that could be useful in different places. The most common representatives are:
-- WebElementHelper: all basic Element actions are defined here;
+- WebElementHelper: basic Element actions are defined here;
 
-**Data** stores necessary data and represents the proxy to pass that data between steps, or classes.
+**Data Factory** generates necessary test data of the specific type. 
+
+**Type** file represents the common object type that can be met in the project, like API response data or the UI data.
 
 **Constants**, **Enum** use to represent the single or group of constants.
 
 ___
 
-[![Auth pre-setup](docs/assets/login-setup/thumbnail.webm.png)](docs/assets/login-setup/video.webm)
+The following test cases are covered:
+1. Filters work properly on Vacancies page
+2. The newly applied candidate appears on the Candidates page.
+
+[login-setup.webm](https://github.com/elfro/e2e-playground/assets/8956849/ea1c0612-2c19-4eae-a345-6d0d937bde64)
+
+[filter-vacancies.webm](https://github.com/elfro/e2e-playground/assets/8956849/2b25f95b-030e-48dd-b5c5-c29188d0c6c3)
+
+[apply-vacancy-check-candidates.webm](https://github.com/elfro/e2e-playground/assets/8956849/edd22e7b-3128-4801-8a62-65f05d5099e5)
