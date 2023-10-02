@@ -1,0 +1,71 @@
+ApiError: An error has occurred: 500, Internal Server Error, 
+https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/admin/localization
+    at HTTPClient.getEntry (/home/runner/work/e2e-playground/e2e-playground/src/api/http-client.ts:82:15)
+    at HTTPClient.getLocalization (/home/runner/work/e2e-playground/e2e-playground/src/api/http-client.ts:31:12)
+    at Object.httpClient [as fn] (/home/runner/work/e2e-playground/e2e-playground/tests/fixtures/httpclient.fixture.ts:9:27)
+    at /home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/fixtureRunner.js:121:18
+    at __PWZONE__[19]-stepZone (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:303:24)
+    at TestInfoImpl._runAsStep (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:301:12)
+    at __PWZONE__[15,1]-refs (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/fixtureRunner.js:115:9)
+ApiError: An error has occurred: 500, Internal Server Error, 
+https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/admin/localization
+    at HTTPClient.updateEntry (/home/runner/work/e2e-playground/e2e-playground/src/api/http-client.ts:121:15)
+    at HTTPClient.updateLocalization (/home/runner/work/e2e-playground/e2e-playground/src/api/http-client.ts:35:12)
+    at Object.httpClient [as fn] (/home/runner/work/e2e-playground/e2e-playground/tests/fixtures/httpclient.fixture.ts:10:5)
+    at /home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/fixtureRunner.js:121:18
+    at __PWZONE__[19]-stepZone (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:303:24)
+    at TestInfoImpl._runAsStep (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:301:12)
+    at __PWZONE__[15,1]-refs (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/fixtureRunner.js:115:9)
+ApiError: An error has occurred: 500, Internal Server Error, 
+https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/admin/job-titles
+    at HTTPClient.getEntry (/home/runner/work/e2e-playground/e2e-playground/src/api/http-client.ts:82:15)
+    at HTTPClient.getEntries (/home/runner/work/e2e-playground/e2e-playground/src/api/http-client.ts:95:12)
+    at HTTPClient.getJobTitles (/home/runner/work/e2e-playground/e2e-playground/src/api/http-client.ts:39:12)
+    at /home/runner/work/e2e-playground/e2e-playground/tests/recruitment.spec.ts:32:23
+    at /home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/workerMain.js:541:13
+    at __PWZONE__[15]-stepZone (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:303:24)
+    at TestInfoImpl._runAsStep (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:301:12)
+    at WorkerMain._runBeforeAllHooksForSuite (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/workerMain.js:535:9)
+    at /home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/workerMain.js:333:13
+    at TestInfoImpl._runAndFailOnError (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:183:7)
+    at /home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/workerMain.js:315:34
+    at __PWZONE__[1]-stepZone (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:303:24)
+    at TestInfoImpl._runAsStep (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:301:12)
+    at /home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/workerMain.js:308:7
+    at TimeoutRunner.run (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright-core/lib/utils/timeoutRunner.js:49:14)
+    at TimeoutManager.runWithTimeout (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/timeoutManager.js:62:7)
+    at TestInfoImpl._runWithTimeout (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:170:26)
+    at WorkerMain._runTest (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/workerMain.js:296:5)
+    at WorkerMain.runTestGroup (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/workerMain.js:220:11)
+    at process.<anonymous> (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/common/process.js:91:22)
+ApiError: An error has occurred: 500, Internal Server Error, 
+https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/admin/users?limit=50&offset=0&sortField=u.userName&sortOrder=ASC
+    at HTTPClient.getEntry (/home/runner/work/e2e-playground/e2e-playground/src/api/http-client.ts:82:15)
+    at HTTPClient.getEntries (/home/runner/work/e2e-playground/e2e-playground/src/api/http-client.ts:95:12)
+    at HTTPClient.getUsers (/home/runner/work/e2e-playground/e2e-playground/src/api/http-client.ts:43:12)
+    at /home/runner/work/e2e-playground/e2e-playground/tests/recruitment.spec.ts:33:26
+    at /home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/workerMain.js:541:13
+    at __PWZONE__[15]-stepZone (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:303:24)
+    at TestInfoImpl._runAsStep (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:301:12)
+    at WorkerMain._runBeforeAllHooksForSuite (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/workerMain.js:535:9)
+    at /home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/workerMain.js:333:13
+    at TestInfoImpl._runAndFailOnError (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:183:7)
+    at /home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/workerMain.js:315:34
+    at __PWZONE__[1]-stepZone (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:303:24)
+    at TestInfoImpl._runAsStep (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:301:12)
+    at /home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/workerMain.js:308:7
+    at TimeoutRunner.run (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright-core/lib/utils/timeoutRunner.js:49:14)
+    at TimeoutManager.runWithTimeout (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/timeoutManager.js:62:7)
+    at TestInfoImpl._runWithTimeout (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:170:26)
+    at WorkerMain._runTest (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/workerMain.js:296:5)
+    at WorkerMain.runTestGroup (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/workerMain.js:220:11)
+    at process.<anonymous> (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/common/process.js:91:22)
+ApiError: An error has occurred: 422, Unprocessable Content, 
+https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/admin/localization
+    at HTTPClient.updateEntry (/home/runner/work/e2e-playground/e2e-playground/src/api/http-client.ts:121:15)
+    at HTTPClient.updateLocalization (/home/runner/work/e2e-playground/e2e-playground/src/api/http-client.ts:35:12)
+    at Object.httpClient [as fn] (/home/runner/work/e2e-playground/e2e-playground/tests/fixtures/httpclient.fixture.ts:14:5)
+    at /home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/fixtureRunner.js:121:18
+    at __PWZONE__[19]-stepZone (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:303:24)
+    at TestInfoImpl._runAsStep (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/testInfo.js:301:12)
+    at __PWZONE__[15,1]-refs (/home/runner/work/e2e-playground/e2e-playground/node_modules/playwright/lib/worker/fixtureRunner.js:115:9)
