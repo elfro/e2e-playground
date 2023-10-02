@@ -1,4 +1,4 @@
-import { expect, test as setup } from './fixtures/setup.fixture';
+import { expect, test as setup } from './fixtures/httpclient.fixture';
 import { STORAGE_STATE } from '../../../playwright.config';
 import { LoginPo } from '../page-objects/login.po';
 import { DashboardPo } from '../page-objects/admin/dashboard.po';
