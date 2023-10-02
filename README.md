@@ -3,6 +3,8 @@ This project is a playground to practice e2e tests.
 
 The [OrangeHRM](https://opensource-demo.orangehrmlive.com/) demo project was chosen since it provides guest user pages, admin panel and allows to use API request to setup necessary test environment.
 
+**Test Report** is deployed to [GH pages](https://elfro.github.io/e2e-playground).
+
 ## Setup Pre-Requisites
 
 Node.js v.18.17.0 +
@@ -33,17 +35,22 @@ npx playwright install
 
 7. Run tests:
 ```
-npm run test-pw
+npm run test:pw
 ```
-8. View HTML report:
+or in UI mode:
 ```
-npx playwright show-report
+npm run test:pw-ui
+```
+8. View Test Report:
+```
+npm run allure:open
 ```
 
 ___
 ## Tech Stack
 - Programming language: [TypeScript](https://www.typescriptlang.org/); 
 - Test library: [Playwright](https://playwright.dev/);
+- Test Reporter: [Allure](https://github.com/allure-framework/allure-js/blob/master/packages/allure-playwright/README.md);
 - To generate test data: [Faker](https://fakerjs.dev/);
 - To check code syntax and style: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/);
 - CI: [GitHub Actions](https://docs.github.com/en/actions).

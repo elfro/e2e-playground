@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": ">=18.17.0"
+    "node": ">=18.17"
   },
   "scripts": {
-    "test-pw": "node_modules/.bin/playwright test",
-    "test-pw-ui": "playwright test --ui",
+    "allure:generate": "npx allure generate ./allure-results --clean",
+    "allure:open": "npx allure open ./allure-report",
+    "allure:serve": "npx allure serve",
+    "test:pw": "node_modules/.bin/playwright test",
+    "test:pw-ui": "playwright test --ui",
+    "posttest:pw": "npm run allure:generate",
     "format-check": "prettier --check --single-quote --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "lint": "eslint .",
     "prepare": "husky install"
@@ -24,10 +28,12 @@
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "8.1.0",
-    "@playwright/test": "1.38.1",
+    "@playwright/test": "^1.38.1",
     "@types/node": "20.7.0",
     "@typescript-eslint/eslint-plugin": "6.7.0",
     "@typescript-eslint/parser": "6.7.0",
+    "allure-commandline": "2.24.0",
+    "allure-playwright": "2.8.1",
     "dotenv": "16.3.1",
     "eslint": "8.49.0",
     "eslint-config-prettier": "9.0.0",
