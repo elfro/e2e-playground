@@ -1,4 +1,4 @@
-import { expect, test } from '../fixtures/setup.fixture';
+import { expect, test } from './fixtures/setup.fixture';
 import { CandidatesPo } from '../page-objects/admin/recruitment/candidates.po';
 import { VacanciesPo } from '../page-objects/admin/recruitment/vacancies.po';
 import { ApplyVacancyPo } from '../page-objects/apply-vacancy.po';
