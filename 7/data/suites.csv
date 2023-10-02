@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Mon Oct 02 16:05:01 GMT 2023","Mon Oct 02 16:05:06 GMT 2023","5157","setup","","","","","should login as an admin",""
+"passed","Mon Oct 02 16:05:22 GMT 2023","Mon Oct 02 16:05:30 GMT 2023","8146","chromium","","Recruitment module","","","should filter Vacancies and check results are correct",""
+"passed","Mon Oct 02 16:05:08 GMT 2023","Mon Oct 02 16:05:22 GMT 2023","14293","chromium","","Recruitment module","","","should apply vacancy and check that record appears on the Candidates page",""
