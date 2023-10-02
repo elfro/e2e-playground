@@ -1,7 +1,7 @@
 import { expect, test as setup } from './fixtures/httpclient.fixture';
-import { STORAGE_STATE } from '../../../playwright.config';
-import { LoginPo } from '../page-objects/login.po';
-import { DashboardPo } from '../page-objects/admin/dashboard.po';
+import { STORAGE_STATE } from '../playwright.config';
+import { LoginPo } from '../src/page-objects/login.po';
+import { DashboardPo } from '../src/page-objects/admin/dashboard.po';
 
 setup('should login as an admin', async ({ page }) => {
   const loginPage = new LoginPo(page);

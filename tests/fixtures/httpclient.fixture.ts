@@ -1,6 +1,6 @@
 import { test as base } from '@playwright/test';
-import { HTTPClient } from '../../api/http-client';
-import { locale } from '../../constants/locale.const';
+import { HTTPClient } from '../../src/api/http-client';
+import { locale } from '../../src/constants/locale.const';
 
 export const test = base.extend<{ httpClient: HTTPClient }>({
   httpClient: async ({ request }, use) => {
