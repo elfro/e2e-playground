@@ -1,18 +1,18 @@
-import { expect, test } from '../fixtures/setup.fixture';
-import { CandidatesPo } from '../page-objects/admin/recruitment/candidates.po';
-import { VacanciesPo } from '../page-objects/admin/recruitment/vacancies.po';
-import { ApplyVacancyPo } from '../page-objects/apply-vacancy.po';
-import { CandidateFactory } from '../test-data-helpers/candidate-factory';
-import { VacancyFactory } from '../test-data-helpers/vacancy-factory';
-import { UserAPI } from '../types/api/UserAPI';
-import { VacancyAPI } from '../types/api/VacancyAPI';
-import { ModulesAPI } from '../types/api/ModulesAPI';
-import { ResumeData } from '../types/ui/ResumeData';
-import { JobTitleAPI } from '../types/api/JobTitleAPI';
-import { CandidatesFilterOptions } from '../types/ui/CandidatesFilterOptions';
-import { VacanciesFilterOptions } from '../types/ui/VacanciesFilterOptions';
-import { CandidateFilterResultsData } from '../types/ui/CandidateFilterResultsData';
-import { VacanciesFilterResultsData } from '../types/ui/VacanciesFilterResultsData';
+import { expect, test } from './fixtures/httpclient.fixture';
+import { CandidatesPo } from '../src/page-objects/admin/recruitment/candidates.po';
+import { VacanciesPo } from '../src/page-objects/admin/recruitment/vacancies.po';
+import { ApplyVacancyPo } from '../src/page-objects/apply-vacancy.po';
+import { CandidateFactory } from '../src/test-data-helpers/candidate-factory';
+import { VacancyFactory } from '../src/test-data-helpers/vacancy-factory';
+import { UserAPI } from '../src/types/api/UserAPI';
+import { VacancyAPI } from '../src/types/api/VacancyAPI';
+import { ModulesAPI } from '../src/types/api/ModulesAPI';
+import { ResumeData } from '../src/types/ui/ResumeData';
+import { JobTitleAPI } from '../src/types/api/JobTitleAPI';
+import { CandidatesFilterOptions } from '../src/types/ui/CandidatesFilterOptions';
+import { VacanciesFilterOptions } from '../src/types/ui/VacanciesFilterOptions';
+import { CandidateFilterResultsData } from '../src/types/ui/CandidateFilterResultsData';
+import { VacanciesFilterResultsData } from '../src/types/ui/VacanciesFilterResultsData';
 
 test.describe('Recruitment module', () => {
   let initialModulesState: ModulesAPI;

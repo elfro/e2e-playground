@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 import { BaseComponent } from '../base.component';
-import { WebElementHelper } from '../../WebElementHelper';
+import { WebElementHelper } from '../../utils/WebElementHelper';
 
 export abstract class TableFilterComponent extends BaseComponent {
   private readonly buttonSearchEl: Locator;

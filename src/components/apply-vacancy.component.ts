@@ -1,7 +1,7 @@
 import { Locator, Page } from '@playwright/test';
 import { BaseComponent } from './base.component';
 import { ResumeData } from '../types/ui/ResumeData';
-import { WebElementHelper } from '../WebElementHelper';
+import { WebElementHelper } from '../utils/WebElementHelper';
 
 export class ApplyVacancyComponent extends BaseComponent {
   private readonly inputFirstNameEl: Locator;

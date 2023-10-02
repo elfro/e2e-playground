@@ -9,13 +9,13 @@ import { defineConfig, devices } from '@playwright/test';
 
 require('dotenv').config();
 
-export const STORAGE_STATE = path.join(__dirname, 'tests/playwright/.auth/user.json');
+export const STORAGE_STATE = path.join(__dirname, 'tests/.auth/user.json');
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests/playwright',
+  testDir: './tests/',
   /* Run tests in files in parallel */
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines" : {
-    "node" : ">=18.17.0"
+  "engines": {
+    "node": ">=18.17.0"
   },
   "scripts": {
     "test-pw": "node_modules/.bin/playwright test",
