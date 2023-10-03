@@ -1,33 +1,16 @@
-import { Locator, Page } from '@playwright/test';
+import { Page } from '@playwright/test';
 import { BasePagePo } from './base-page.po';
+import { LoginFormComponent } from '../components/login-form.component';
+
 export class LoginPo extends BasePagePo {
-  private readonly inputUsernameEl: Locator;
-  private readonly inputPasswordEl: Locator;
-  private readonly buttonSubmitEl: Locator;
+  private readonly _loginFormComponent: LoginFormComponent;
 
   constructor(page: Page) {
     super(page);
-    this.inputUsernameEl = this.page.locator('input[name="username"]');
-    this.inputPasswordEl = this.page.locator('input[name="password"]');
-    this.buttonSubmitEl = this.page.locator('button[type="submit"]');
-  }
-  async typeUsername(username: string) {
-    await this.inputUsernameEl.clear();
-    await this.inputUsernameEl.fill(username);
+    this._loginFormComponent = new LoginFormComponent(this.page);
   }
 
-  async typePassword(password: string) {
-    await this.inputPasswordEl.clear();
-    await this.inputPasswordEl.fill(password);
-  }
-
-  async clickLoginButton() {
-    await this.buttonSubmitEl.click();
-  }
-
-  async login(username: string, password: string) {
-    await this.typeUsername(username);
-    await this.typePassword(password);
-    await this.clickLoginButton();
+  get loginFormComponent(): LoginFormComponent {
+    return this._loginFormComponent;
   }
 }

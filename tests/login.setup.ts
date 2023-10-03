@@ -10,7 +10,7 @@ setup('should login as an admin', async ({ page }) => {
   const password = process.env.PASSWORD;
 
   await loginPage.goto();
-  await loginPage.login(username, password);
+  await loginPage.loginFormComponent.login(username, password);
 
   await expect(dashboardPage.headerComponent.getUserDropDownMenu()).toBeVisible();
   await page.context().storageState({ path: STORAGE_STATE });

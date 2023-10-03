@@ -6,7 +6,7 @@ export class DashboardPo extends BasePagePo {
 
   constructor(page: Page) {
     super(page);
-    this._headerComponent = new HeaderComponent(page);
+    this._headerComponent = new HeaderComponent(this.page);
   }
 
   get headerComponent(): HeaderComponent {
