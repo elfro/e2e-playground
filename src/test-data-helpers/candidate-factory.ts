@@ -1,6 +1,8 @@
 import path from 'path';
-import { ResumeData } from '../types/ui/ResumeData';
 import { faker } from '@faker-js/faker';
+import { ResumeData } from '../types/ui/ResumeData';
+import { VacancyAPI } from '../types/api/VacancyAPI';
+import { CandidateRequestAPI } from '../types/api/CandidateAPI';
 
 export class CandidateFactory {
   static generateCandidateUIData() {
@@ -15,5 +17,20 @@ export class CandidateFactory {
     };
 
     return candidate;
+  }
+
+  static generateCandidateAPIData(vacancy: VacancyAPI) {
+    return {
+      dateOfApplication: new Date().toISOString().slice(0, 10),
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
+      middleName: faker.person.middleName(),
+      email: `test${Date.now()}@test.com`,
+      contactNumber: faker.string.numeric(10),
+      vacancyId: vacancy.id,
+      consentToKeepData: true,
+      comment: null,
+      keywords: null,
+    } as CandidateRequestAPI;
   }
 }

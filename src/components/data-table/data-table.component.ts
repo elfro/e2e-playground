@@ -27,6 +27,7 @@ export abstract class DataTableComponent extends BaseComponent {
 
   protected async collectData<T>() {
     const results: T[] = [];
+    await this.tableRowEl.first().scrollIntoViewIfNeeded();
     for (const row of await this.tableRowEl.all()) {
       const values = await row.locator(this.tableCellSelector).allInnerTexts();
       const t: T = this.dataParser(values);

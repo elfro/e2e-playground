@@ -1,14 +1,13 @@
 import { expect, test } from './fixtures/httpclient.fixture';
 import { CandidatesPo } from '../src/page-objects/admin/recruitment/candidates.po';
 import { VacanciesPo } from '../src/page-objects/admin/recruitment/vacancies.po';
-import { ApplyVacancyPo } from '../src/page-objects/apply-vacancy.po';
 import { CandidateFactory } from '../src/test-data-helpers/candidate-factory';
 import { VacancyFactory } from '../src/test-data-helpers/vacancy-factory';
 import { UserAPI } from '../src/types/api/UserAPI';
 import { VacancyAPI } from '../src/types/api/VacancyAPI';
 import { ModulesAPI } from '../src/types/api/ModulesAPI';
-import { ResumeData } from '../src/types/ui/ResumeData';
 import { JobTitleAPI } from '../src/types/api/JobTitleAPI';
+import { CandidateResponseAPI } from '../src/types/api/CandidateAPI';
 import { CandidatesFilterOptions } from '../src/types/ui/CandidatesFilterOptions';
 import { VacanciesFilterOptions } from '../src/types/ui/VacanciesFilterOptions';
 import { CandidateFilterResultsData } from '../src/types/ui/CandidateFilterResultsData';
@@ -17,7 +16,7 @@ import { VacanciesFilterResultsData } from '../src/types/ui/VacanciesFilterResul
 test.describe('Recruitment module', () => {
   let initialModulesState: ModulesAPI;
   let newVacancy: VacancyAPI;
-  let newCandidate: ResumeData;
+  let newCandidate: CandidateResponseAPI;
 
   test.beforeAll(async ({ httpClient }) => {
     initialModulesState = await httpClient.getModules();
@@ -28,7 +27,6 @@ test.describe('Recruitment module', () => {
   });
 
   test.beforeAll(async ({ httpClient }) => {
-    newCandidate = CandidateFactory.generateCandidateUIData();
     const jobTitles = await httpClient.getJobTitles();
     const activeUsers = (await httpClient.getUsers()).filter(({ deleted }) => !deleted);
 
@@ -36,36 +34,21 @@ test.describe('Recruitment module', () => {
     const randomUser = getRandomArrayElement(activeUsers) as UserAPI;
 
     newVacancy = await httpClient.createVacancy(VacancyFactory.generateVacancyAPIData(randomJobTitle, randomUser));
+    newCandidate = await httpClient.createCandidate(CandidateFactory.generateCandidateAPIData(newVacancy));
   });
 
   test.afterAll(async ({ httpClient }) => {
-    const candidates = await httpClient.getCandidatesList();
-
-    const candidateToDelete = candidates.find(
-      candidate =>
-        candidate.vacancy &&
-        candidate.vacancy.id === newVacancy.id &&
-        candidate.firstName === newCandidate.firstName &&
-        candidate.lastName === newCandidate.lastName,
-    );
-
-    if (candidateToDelete) {
-      await httpClient.deleteCandidate([candidateToDelete.id]);
-    }
+    await httpClient.deleteCandidate([newCandidate.id]);
     await httpClient.deleteVacancy([newVacancy.id]);
     await httpClient.updateModules(initialModulesState);
   });
 
-  test('should apply vacancy and check that record appears on the Candidates page', async ({ page }) => {
-    const applyVacancyPage = new ApplyVacancyPo(page);
+  test('should filter Candidates and check results are correct', async ({ page }) => {
     const candidatesPage = new CandidatesPo(page);
     const filterOptions: CandidatesFilterOptions = {
       vacancy: newVacancy.name,
     };
 
-    await applyVacancyPage.goto(newVacancy.id.toString());
-    await applyVacancyPage.applyVacancyComponent.fillInForm(newCandidate);
-    await applyVacancyPage.modalComponent.clickOnOkButton();
     await candidatesPage.goto();
     await candidatesPage.selectFilters(filterOptions);
     const candidates: CandidateFilterResultsData[] = await candidatesPage.dataTableComponent.collectTableData();
@@ -92,7 +75,7 @@ test.describe('Recruitment module', () => {
   });
 });
 
-function getFullname({ firstName, middleName, lastName }: ResumeData) {
+function getFullname({ firstName, middleName, lastName }: CandidateResponseAPI) {
   return `${firstName} ${middleName} ${lastName}`.replace(/\s\s+/g, ' ');
 }
 

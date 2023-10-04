@@ -31,7 +31,7 @@ npx playwright install
 5. Copy .env.example file to the root of the project with .env file name.
 6. Set `USERNAME` and `PASSWORD` values by copying them from the main auth page of [OrangeHRM](https://opensource-demo.orangehrmlive.com/) app.
 
-<img src="docs/assets/env_auth_creds_variable.png" alt="Auth credentials" style="width: 75% !important;">
+<img src="docs/assets/env_auth_creds_variable.png" alt="Auth credentials" style="width: 50% !important;">
 
 7. Run tests:
 ```
@@ -83,10 +83,5 @@ ___
 
 The following test cases are covered:
 1. Filters work properly on Vacancies page
-2. The newly applied candidate appears on the Candidates page.
-
-[login-setup.webm](https://github.com/elfro/e2e-playground/assets/8956849/ea1c0612-2c19-4eae-a345-6d0d937bde64)
-
-[filter-vacancies.webm](https://github.com/elfro/e2e-playground/assets/8956849/2b25f95b-030e-48dd-b5c5-c29188d0c6c3)
-
-[apply-vacancy-check-candidates.webm](https://github.com/elfro/e2e-playground/assets/8956849/edd22e7b-3128-4801-8a62-65f05d5099e5)
+2. Filters work properly on Candidates page
+3. The newly applied candidate appears on the Candidates page.

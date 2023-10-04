@@ -1,7 +1,7 @@
 import { APIRequestContext } from '@playwright/test';
 import { ModulesAPI } from '../types/api/ModulesAPI';
 import { LocalizationAPI } from '../types/api/LocalizationAPI';
-import { CandidateResponseAPI } from '../types/api/CandidateAPI';
+import { CandidateRequestAPI, CandidateResponseAPI } from '../types/api/CandidateAPI';
 import { VacancyAPI, VacancyCreateRequestData } from '../types/api/VacancyAPI';
 import { ApiError } from './api-error';
 import { JobTitleAPI } from '../types/api/JobTitleAPI';
@@ -72,6 +72,10 @@ export class HTTPClient {
         sortOrder: 'DESC',
       },
     });
+  }
+
+  async createCandidate(body: CandidateRequestAPI) {
+    return this.createEntry<CandidateRequestAPI, CandidateResponseAPI>(appURLs.api.candidates, body);
   }
 
   private async getEntry<T>(url: string, options?: options) {
