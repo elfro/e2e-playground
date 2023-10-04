@@ -83,9 +83,16 @@ ___
 
 The following test cases are covered:
 1. Filters work properly on Vacancies page
+   
    [video.webm](https://github.com/elfro/e2e-playground/assets/8956849/3a4aa1a6-cfe6-4cf8-9dee-64c1d30e85d6)
+   
    [video.webm](https://github.com/elfro/e2e-playground/assets/8956849/259d4153-976d-42da-97ff-b19642b6187a)
-2. Filters work properly on Candidates page
+   
+3. Filters work properly on Candidates page
+   
    [video.webm](https://github.com/elfro/e2e-playground/assets/8956849/486e1145-8b59-4da7-b8cb-b06b426916ff)
-3. The newly applied candidate from Apply Vacancy page appears on the Candidates page.
+   
+5. The newly applied candidate from Apply Vacancy page appears on the Candidates page.
+   
    [video.webm](https://github.com/elfro/e2e-playground/assets/8956849/6a632e4a-7c54-4cf4-a256-49a21ed09591)
+   
