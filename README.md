@@ -35,7 +35,7 @@ npx playwright install
 
 7. Run tests:
 ```
-npm run test:pw
+npm run test
 ```
 or in UI mode:
 ```
