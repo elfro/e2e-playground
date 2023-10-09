@@ -12,48 +12,47 @@ Node.js v.18.17.0 +
 npm 9.6.0 +
 
 ## Installation
-1. Clone a project locally:
-```
-git@github.com:elfro/e2e-playground.git
-```
-2. Switch to the project directory:
-```
-cd e2e-playground
+1. Clone a project locally and switch to the project directory:
+```bash
+git clone git@github.com:elfro/e2e-playground.git && cd e2e-playground
 ```
 3. Install packages:
-```
+```bash
 npm ci
 ```
 4. Install browsers
-```
+```bash
 npx playwright install
 ```
 5. Copy .env.example file to the root of the project with .env file name.
+```bash
+cp .env.example .env
+```
 6. Set `USERNAME` and `PASSWORD` values by copying them from the main auth page of [OrangeHRM](https://opensource-demo.orangehrmlive.com/) app.
 
 <img src="docs/assets/env_auth_creds_variable.png" alt="Auth credentials" style="width: 50% !important;">
 
 7. Run tests:
-```
+```bash
 npm run test
 ```
 or in UI mode:
-```
+```bash
 npm run test:pw-ui
 ```
 8. View Test Report:
-```
+```bash
 npm run allure:open
 ```
 
 ___
 ## Tech Stack
-- Programming language: [TypeScript](https://www.typescriptlang.org/); 
-- Test library: [Playwright](https://playwright.dev/);
-- Test Reporter: [Allure](https://github.com/allure-framework/allure-js/blob/master/packages/allure-playwright/README.md);
-- To generate test data: [Faker](https://fakerjs.dev/);
-- To check code syntax and style: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/);
-- CI: [GitHub Actions](https://docs.github.com/en/actions).
+- Programming language: [<img alt="programming language" src="docs/assets/ts-logo-128.svg" title="TypeScript" width="30px"/>](https://www.typescriptlang.org)
+- Test library: [<img alt="test library" src="docs/assets/playwright-logo.svg" title="Playwright" width="30px"/>](https://playwright.dev/)
+- Test Reporter: [<img alt="test reporter" src="docs/assets/allure-logo.png" title="Allure" width="30px"/>](https://github.com/allure-framework/allure-js/blob/master/packages/allure-playwright/README.md)
+- To generate test data: [<img alt="library to generate test data" src="docs/assets/fakerjs-logo.svg" title="Fakerjs" width="30px"/>](https://fakerjs.dev/)
+- To check code syntax and style: [<img alt="static code analysis tool" src="docs/assets/eslint-logo-color.svg" title="ESLint" width="60px"/>](https://eslint.org/), [<img alt="code formatter" src="docs/assets/prettier-logo.svg" title="Prettier" width="30px"/>](https://prettier.io/)
+- CI: [<img alt="CI/CD" src="docs/assets/gh-actions-logo.png" title="GitHub Actions" width="30px"/>](https://docs.github.com/en/actions)
 
 ___
 
