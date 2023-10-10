@@ -1,0 +1,46 @@
+{
+  "name": "e2e-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "allure:generate": "npx allure generate ./allure-results --clean",
+    "allure:open": "npx allure open ./allure-report",
+    "allure:serve": "npx allure serve",
+    "test": "npm-run-all test:pw allure:generate --continue-on-error",
+    "test:pw": "node_modules/.bin/playwright test",
+    "test:pw-ui": "playwright test --ui",
+    "format-check": "prettier --check --single-quote --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "lint": "eslint .",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npm run format-check",
+      "npm run lint"
+    ]
+  },
+  "keywords": [],
+  "author": "Ellina Frolova",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "8.1.0",
+    "@playwright/test": "1.38.1",
+    "@types/node": "20.7.0",
+    "@typescript-eslint/eslint-plugin": "6.7.4",
+    "@typescript-eslint/parser": "6.7.4",
+    "allure-commandline": "2.24.0",
+    "allure-playwright": "2.8.1",
+    "dotenv": "16.3.1",
+    "eslint": "8.51.0",
+    "eslint-config-prettier": "9.0.0",
+    "husky": "8.0.3",
+    "lint-staged": "14.0.1",
+    "npm-run-all": "4.1.5",
+    "prettier": "3.0.3",
+    "typescript": "5.2.2"
+  }
+}
