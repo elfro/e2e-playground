@@ -22,7 +22,10 @@ export class CandidatesFilterComponent extends TableFilterComponent {
       await this.selectOptionFromDropDownList(options.status, RecruitmentFilters.STATUS);
     }
     if (options.methodOfApplication) {
-      await this.selectOptionFromDropDownList(options.methodOfApplication, RecruitmentFilters.METHOD_OF_APPLICATION);
+      await this.selectOptionFromDropDownList(
+        options.methodOfApplication,
+        RecruitmentFilters.METHOD_OF_APPLICATION,
+      );
     }
     if (options.candidateName) {
       await this.typeTextToInputFieldWithAutoComplete(options.candidateName, RecruitmentFilters.CANDIDATE_NAME);
@@ -39,7 +42,10 @@ export class CandidatesFilterComponent extends TableFilterComponent {
       await this.typeTextToInputField(options.dateOfApplicationTo, RecruitmentFilters.DATE_OF_APPLICATION_TO);
     }
     if (options.methodOfApplication) {
-      await this.selectOptionFromDropDownList(options.methodOfApplication, RecruitmentFilters.METHOD_OF_APPLICATION);
+      await this.selectOptionFromDropDownList(
+        options.methodOfApplication,
+        RecruitmentFilters.METHOD_OF_APPLICATION,
+      );
     }
 
     await this.clickOnSubmitButton();

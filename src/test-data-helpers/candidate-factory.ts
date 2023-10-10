@@ -5,9 +5,9 @@ import { VacancyAPI } from '../types/api/VacancyAPI';
 import { CandidateRequestAPI } from '../types/api/CandidateAPI';
 
 export class CandidateFactory {
-  static generateCandidateUIData() {
+  static generateCandidateUIData(): ResumeData {
     const filePath = path.join(__dirname, '../../upload/To-do.pdf');
-    const candidate: ResumeData = {
+    return {
       firstName: faker.person.firstName(),
       middleName: faker.person.middleName(),
       lastName: faker.person.lastName(),
@@ -15,11 +15,9 @@ export class CandidateFactory {
       contactNumber: faker.string.numeric(10),
       file: filePath,
     };
-
-    return candidate;
   }
 
-  static generateCandidateAPIData(vacancy: VacancyAPI) {
+  static generateCandidateAPIData(vacancy: VacancyAPI): CandidateRequestAPI {
     return {
       dateOfApplication: new Date().toISOString().slice(0, 10),
       firstName: faker.person.firstName(),
@@ -31,6 +29,6 @@ export class CandidateFactory {
       consentToKeepData: true,
       comment: null,
       keywords: null,
-    } as CandidateRequestAPI;
+    };
   }
 }

@@ -13,4 +13,8 @@ export class LoginPo extends BasePagePo {
   get loginFormComponent(): LoginFormComponent {
     return this._loginFormComponent;
   }
+
+  async login(username: string, password: string) {
+    await this._loginFormComponent.login(username, password);
+  }
 }

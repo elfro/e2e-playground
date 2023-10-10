@@ -13,6 +13,9 @@ module.exports = {
     },
     root: true,
     rules: {
-        'max-len': ['error', {code: 125}],
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': ['error', {
+            varsIgnorePattern: '^I'
+        }]
     }
 };
